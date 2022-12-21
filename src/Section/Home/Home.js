@@ -15,7 +15,7 @@ const Home = () => {
                     <div className="max-w-md">
                     <h1 className="mb-5 text-5xl font-bold">Welcome to my private consultancy firm</h1>
                     <p className="mb-5">I am a finance specialist. I have 30 years of experience in this field. 100+ consultancy i gave to client. </p>
-                    <button className="btn btn-primary">View More</button>
+                    <Link to={'/services'}><button className="btn btn-primary">View More</button></Link>
                     </div>
                 </div>
             </div>
