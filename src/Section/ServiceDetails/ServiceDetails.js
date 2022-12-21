@@ -11,6 +11,7 @@ const ServiceDetails = () => {
     const sindleData = useLoaderData();
     useTitle('user review')
     const {_id, title, img, price, description, review} = sindleData;
+    console.log(sindleData)
     const addCommentsHandler = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -49,6 +50,7 @@ const ServiceDetails = () => {
         .then(doc => setUserMessage(doc))
         .catch(error => console.error('error', error));
     }, [user?.email])
+
     if(loading){
         return <div>Loading ........</div>
     }
@@ -56,12 +58,12 @@ const ServiceDetails = () => {
         <div>
             <div className="card w-96 bg-base-100 shadow-xl my-9 mx-auto">
                 <figure className="px-10 pt-10">
-                    <img src={img} alt="Service" className="rounded-xl" />
+                    <img src={sindleData && img} alt="Service" className="rounded-xl" />
                 </figure>
                 <div className="card-body items-center text-center">
-                    <h2 className="card-title">{title}</h2>
-                    <p className='font-bold'>Price: ${price}</p>
-                    <p>{description}</p>
+                    <h2 className="card-title">{sindleData && title}</h2>
+                    <p className='font-bold'>Price: ${sindleData && price}</p>
+                    <p>{sindleData && description}</p>
                     <div className="card-actions">
                         <button className="btn btn-primary">Buy Now</button>
                     </div>
@@ -80,10 +82,10 @@ const ServiceDetails = () => {
                     </thead>
                     <tbody>
                         {
-                            review.map((singleItem, index) => <Comments key={index} item={singleItem}></Comments>)
+                            review?.map((singleItem, index) => <Comments key={index} item={singleItem}></Comments>)
                         }
                         {
-                         Object.values(userMessage).map(message => <UserFormDatabase key={message._id} getUser={message}></UserFormDatabase>) 
+                         Object.values(userMessage)?.map(message => <UserFormDatabase key={message._id} getUser={message}></UserFormDatabase>) 
                         }
                     </tbody>
                 </table>

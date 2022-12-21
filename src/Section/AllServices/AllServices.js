@@ -9,7 +9,7 @@ const AllServices = () => {
     return (
         <div>
             {
-                allData.map(service => <SingleService key={service._id} allservice={service}></SingleService>)
+                allData && allData.map(service => <SingleService key={service._id} allservice={service}></SingleService>)
             }
         </div>
     );
